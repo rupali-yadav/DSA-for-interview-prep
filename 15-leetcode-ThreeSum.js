@@ -21,29 +21,35 @@ var threeSum = function (nums) {
     let r = 0;
     let l = 0
 
-    // step1- sort the array
+    // Sorting in ascending order is necessary 
+    // to use the two-pointer technique efficiently
     nums = nums.sort((a, b) => a - b);
-
-    // step 2- loop thru the array with 3 pointers i, r- one that goes right, l - one that goes left 
     for (let i = 0; i < nums.length; i++) {
-
-        //check if next num is same; if same skip it
+        // check if next num is same; if same skip it
         if (i > 0 && nums[i] === nums[i - 1]) continue;
 
         r = i + 1;
         l = nums.length - 1;
-
         // while r and l do not collide do the sum and and compare with the target
 
         while (r < l) {
-
             const sum = nums[i] + nums[r] + nums[l];
             if (sum === 0) {
                 result.push([nums[i], nums[r], nums[l]]);
+
+                // if next num is same; if same skip it
                 while (r < l && nums[r] === nums[r + 1]) r++;
+
+                // if next num is same; if same skip it
                 while (r < l && nums[l] === nums[l - 1]) l--;
-                r++
-                l--
+
+                // move the pointers 
+                // next two lines are always going to be executed 
+                // the while loops above are necessary with these 
+                // two lines ahead as we want to skip duplicates
+                r++;
+                l--;
+                
             } else if (sum < 0) {
                 // if sum is negative go towards right
                 r++;
