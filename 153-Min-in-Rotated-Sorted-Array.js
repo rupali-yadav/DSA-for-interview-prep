@@ -17,18 +17,20 @@
 var findMin = function (nums) {
 
     // use two pointer approach
-    // find mid
+    // find midIndex
     // then decide which pointer to move
 
     let l = 0,  r = nums.length - 1;
 
     while (l < r) {
 
-        let mid = Math.floor((l + r) / 2);
+        let mid= Math.floor((l + r) / 2);
+        // ex: floor(2.5) = 2
 
         // if middle number is greater than the last number
+        // that means minimum is to the right of mid (because mid is in the left sorted part)
         if (nums[mid] > nums[r]) {
-            // bring left to the next number of mid
+            //so we bring left to the next number of mid
             l = mid + 1;
         } else {
             // right can come to mid as the min number 

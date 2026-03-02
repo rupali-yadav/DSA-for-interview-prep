@@ -31,7 +31,12 @@ var maxProduct = function (nums) {
         const current = nums[i];
 
         if (current < 0) {
-            // if current num is negavtive swap the min and max products
+            // If num is negative, swap maxProd and minProd because:
+            // a negative number can become positive if multiplied by another negative later, hence we track minP as well
+            // When you multiply by a negative:
+            // the old maxProd could become the new minProd
+            // the old minProd could become the new maxProd
+
             [minP, maxP] = [maxP, minP];
         }
         // the comparison should always be between 
