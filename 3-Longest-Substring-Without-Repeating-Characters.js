@@ -17,23 +17,28 @@
 
 
 var lengthOfLongestSubstring = function (s) {
-    const charMap = new Map();
+    const lastSeen = new Map();
+    // the only aim is to update the set with the index of the character 
+    // and according maintain the window i.e move left and right
 
-    let maxLen = 0; let l = 0;
+    let left = 0; let maxLen = 0;
 
     for (let r = 0; r < s.length; r++) {
+        const char = s[r];
 
-        if (charMap.has(s[i])) {
-            // remove the character from window frame that was encountered again
-            // to do that update the left pointer
-
-            l = Math.max(l, charMap.get(s[r]) + 1);
-
+        if (lastSeen.has(char)) {
+            left = Math.max(left, lastSeen.get(char) + 1)
         }
-        charMap.set(s[r], r);
-        maxLen = Math.max(maxLen, r - l + 1);
 
+        // update the set with latest index of char
+        lastSeen.set(char, r);
+
+        // find the length
+        maxLen = Math.max(maxLen, r - left + 1);
     }
 
     return maxLen;
 }
+
+
+console.log(lengthOfLongestSubstring("abcabcbb"))

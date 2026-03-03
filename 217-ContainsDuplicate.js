@@ -33,6 +33,6 @@ const containsDuplicate = (nums) => {
 const containsDuplicate2 = (nums) => {
 
     // duplicates are automatically ignored in a set.
-    return nums.length !== new Set(nums);
+    return nums.length !== new Set(nums).size;
 
 }
